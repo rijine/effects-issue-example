@@ -4,6 +4,7 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {StoreModule} from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {reducer} from './store/app.state';
 import {PostEffects} from './store/app.effects';
@@ -21,6 +22,10 @@ import { provideBootstrapEffects } from './utils';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(reducer),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: true // TODO: only if != production
+    }),
     EffectsModule.forRoot([]),
   ],
   providers: [
